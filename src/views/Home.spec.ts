@@ -1,20 +1,23 @@
 import { createTestingPinia } from '@pinia/testing';
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Home from './Home.vue';
 
 describe('Home.vue', () => {
-  let wrapper: VueWrapper<any>;
+  const defaultMountOptions = {
+    global: {
+      plugins: [createTestingPinia()],
+    },
+  };
+  let wrapper;
 
-  beforeEach(() => {
-    const mounOptions = {
-      global: {
-        plugins: [createTestingPinia()],
-      },
-    };
-    wrapper = shallowMount(Home, mounOptions);
-  });
+  function getWrapper(mountOptions = defaultMountOptions) {
+    return shallowMount(Home, mountOptions);
+  }
 
-  it('should the Home View', () => {
+  it('renders the Home View', () => {
+    // Arrange
+    wrapper = getWrapper();
+
     // Assert
     expect(wrapper.element).toMatchSnapshot();
   });

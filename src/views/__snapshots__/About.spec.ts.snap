@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`About.vue should the About View 1`] = `
+exports[`About.vue renders the About View 1`] = `
 <div
   class="about"
 >

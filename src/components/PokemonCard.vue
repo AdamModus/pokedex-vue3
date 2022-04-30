@@ -1,23 +1,16 @@
 <template>
-  <div class="p-5 m-5 ring-2 hover:ring-4 rounded-lg shadow-xl">
+  <div class="p-5 m-5 ring-2 rounded-lg shadow-xl hover:ring-4 cursor-pointer">
     <img :src="imgUrl" :alt="name" />
     <p class="capitalize">{{ name }}</p>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-// import { usePokemonStore } from "@/store";
-
-export default defineComponent({
-  name: 'PokemonCard',
-
-  props: {
-    id: Number,
-    name: String,
-    url: String,
-    imgUrl: String,
-  },
+<script setup lang="ts">
+defineProps({
+  id: { type: Number, required: true },
+  name: { type: String, required: true },
+  url: { type: String, required: true },
+  imgUrl: { type: String, required: true },
 });
 </script>
 

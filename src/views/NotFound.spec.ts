@@ -1,14 +1,18 @@
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import NotFound from './NotFound.vue';
 
 describe('NotFound.vue', () => {
-  let wrapper: VueWrapper<any>;
+  const defaultMountOptions = {};
+  let wrapper;
 
-  beforeEach(() => {
-    wrapper = shallowMount(NotFound);
-  });
+  function getWrapper(mountOptions = defaultMountOptions) {
+    return shallowMount(NotFound, mountOptions);
+  }
 
-  it('should the NotFound View', () => {
+  it('renders the NotFound View', () => {
+    // Arrange
+    wrapper = getWrapper();
+
     // Assert
     expect(wrapper.element).toMatchSnapshot();
   });

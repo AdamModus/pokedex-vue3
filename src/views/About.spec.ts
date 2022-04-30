@@ -1,14 +1,18 @@
-import { shallowMount, VueWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import About from './About.vue';
 
 describe('About.vue', () => {
-  let wrapper: VueWrapper<any>;
+  const defaultMountOptions = {};
+  let wrapper;
 
-  beforeEach(() => {
-    wrapper = shallowMount(About);
-  });
+  function getWrapper(mountOptions = defaultMountOptions) {
+    return shallowMount(About, mountOptions);
+  }
 
-  it('should the About View', () => {
+  it('renders the About View', () => {
+    // Arrange
+    wrapper = getWrapper();
+
     // Assert
     expect(wrapper.element).toMatchSnapshot();
   });

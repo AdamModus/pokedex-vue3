@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
     <PokemonCard
-      v-for="pokemon in pokemonStore.allPokemons"
+      v-for="pokemon in pokemons"
       :key="pokemon.id"
       :id="pokemon.id"
       :name="pokemon.name"
@@ -12,25 +12,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import PokemonCard from '@/components/PokemonCard.vue';
 import { usePokemonStore } from '@/store';
-import PokemonCard from '@/components/PokemonCard.vue'; // @ is an alias to /src
+import { computed, onMounted } from 'vue';
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    PokemonCard,
-  },
+const pokemonStore = usePokemonStore();
 
-  setup() {
-    const pokemonStore = usePokemonStore();
+const pokemons = computed(() => pokemonStore.pokemons);
 
-    return { pokemonStore };
-  },
-
-  mounted() {
-    this.pokemonStore.fetchAllPokemons();
-  },
+onMounted(() => {
+  pokemonStore.fetchAllPokemons();
 });
 </script>
